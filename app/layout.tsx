@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 //@ts-ignore
 import Navbar from "@/components/navbar/Navbar";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <Providers>
         <Navbar/>
+        <Toaster/>
         {children}
         </Providers>
       </body>
