@@ -1,7 +1,7 @@
 "use client"
 
 import { ShoppingCart, UserPlus, LogIn, LogOut, Lock } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -21,17 +21,17 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex flex-wrap items-center justify-between">
         <Link  href={'/'} className='text-2xl font-bold text-emerald-400 items-center space-x-2 flex'>
-						Wearnest
+						FreeImage
 				</Link>
 
         <nav className="flex flex-wrap items-center gap-4">
           <Link href={"/"} className=' text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out'>Home</Link>
-          {user && (
+          {/* {user && (
             <Link href={"/cart"} className='relative group text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out'>
               <ShoppingCart className='inline-block mr-1 group-hover:text-emerald-400' size={20} />
 							
             </Link>
-          )}
+          )} */}
           {isAdmin && (
 							<Link
 								className='bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-1 rounded-md font-medium
@@ -45,7 +45,7 @@ const Navbar = () => {
           {user ? (
 							<button
 								className='bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 
-						rounded-md flex items-center transition duration-300 ease-in-out'>
+						rounded-md flex items-center transition duration-300 ease-in-out' onClick={() => signOut()}>
 								<LogOut size={18} />
 								<span className='hidden sm:inline ml-2'>Log Out</span>
 							</button>
@@ -63,6 +63,7 @@ const Navbar = () => {
 									href={"/login"}
 									className='bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 
 									rounded-md flex items-center transition duration-300 ease-in-out'
+									onClick={() => signIn()}
 								>
 									<LogIn className='mr-2' size={18} />
 									Login
