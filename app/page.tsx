@@ -1,15 +1,20 @@
 
 import Navbar from "@/components/navbar/Navbar";
+import SearchBar from "@/components/search/SearchBar";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      {/* <Navbar/> */}
-      <h1>hello world</h1>
-      {process.env.CLOUDINARY_API_KEY}
-      <br />
-      {process.env.CLOUDINARY_API_SECRET}
+    <div className="min-h-screen flex flex-col items-center p-6 sm:p-10 font-sans">
+    {/* Navbar */}
+      <header className="w-full max-w-6xl mb-9">
+        <Navbar />
+      </header>
+
+    {/* Search Bar */}
+      <main className="w-full max-w-3xl">
+        <SearchBar />
+      </main>
     </div>
   );
 }
