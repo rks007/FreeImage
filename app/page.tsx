@@ -1,6 +1,7 @@
 
 import Navbar from "@/components/navbar/Navbar";
 import SearchBar from "@/components/search/SearchBar";
+import ShowImages from "@/components/showImages/ShowImages";
 import Image from "next/image";
 
 export default function Home() {
@@ -15,6 +16,12 @@ export default function Home() {
       <main className="w-full max-w-3xl">
         <SearchBar />
       </main>
+
+    {/* Image Gallery */}
+      <div>
+        <ShowImages/>
+      </div>
+      
     </div>
   );
 }
