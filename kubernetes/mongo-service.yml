@@ -4,7 +4,7 @@ metadata:
   name: mongo-service
   namespace: freeimage
 spec:
-  type: ClusterIp
+  type: ClusterIP
   selector:
     app: mongo
   ports:
