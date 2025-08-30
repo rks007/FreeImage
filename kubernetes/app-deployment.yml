@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: freeimage-deployment
+  namespace: freeimage
+  labels:
+    app: freeimage
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: freeimage
+  template:
+    metadata:
+      labels:
+        app: freeimage
+    spec:
+      containers:
+        - name: freeimage-container
+          image: rks007/freeimage
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: freeimage-config  
