@@ -1,0 +1,39 @@
+
+services:
+  
+  mongo:
+    image: mongodb/mongodb-community-server:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --eval 'db.adminCommand({ ping: 1 })' || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+
+  free-image:
+    build: .
+    container_name: free-image
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/free_image
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=password_nextauth
+      - CLOUDINARY_CLOUD_NAME=
+      - CLOUDINARY_API_KEY=
+      - CLOUDINARY_API_SECRET=
+    depends_on:
+      - mongo 
+    restart: always   
+
+
+
+volumes:
+  mongodb-data:
